@@ -89,11 +89,13 @@
 		    <version>1.1.2</version>
         </dependency>
 
+		<!--
 		<dependency>
 			<groupId>org.hsqldb</groupId>
 			<artifactId>hsqldb</artifactId>
 			<version>2.3.2</version>
 		</dependency>
+		-->
 
 		<dependency>
 	        <groupId>org.antlr</groupId>
@@ -120,6 +122,7 @@
             <version>${egovframework.rte.version}</version>
         </dependency>
 	
+	<!--
 	<dependency>
             <groupId>com.googlecode.log4jdbc</groupId>
             <artifactId>log4jdbc</artifactId>
@@ -131,12 +134,14 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        
 	
 	<dependency>
             <groupId>org.jasypt</groupId>
             <artifactId>jasypt</artifactId>
             <version>1.9.2</version>
         </dependency>
+        -->
 	
 	<dependency>
             <groupId>cglib</groupId>
@@ -156,6 +161,7 @@
             <version>2.11.0</version>
         </dependency>
 	
+	<!--
 	<dependency>
             <groupId>net.sf.ehcache</groupId>
             <artifactId>ehcache-core</artifactId>
@@ -167,6 +173,7 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        
 	
 	<dependency>
             <groupId>net.sf.ehcache</groupId>
@@ -221,6 +228,7 @@
             <artifactId>sndng-mail</artifactId>
             <version>1.0</version>
         </dependency>
+        -->
 	
 	<dependency>
             <groupId>javax.servlet.jsp</groupId>
@@ -229,6 +237,7 @@
             <scope>provided</scope>
         </dependency>
 	
+	<!--
 	<dependency>
             <groupId>ldapsdk</groupId>
             <artifactId>ldapsdk</artifactId>
@@ -250,6 +259,7 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        -->
 	
 	<dependency>
             <groupId>xmlbeans</groupId>
@@ -269,6 +279,7 @@
             </exclusions>
         </dependency>
 	
+	<!--
 	<dependency>
             <groupId>org.twitter4j</groupId>
             <artifactId>twitter4j-core</artifactId>
@@ -381,6 +392,7 @@
             <artifactId>jackson-mapper-asl</artifactId>  
             <version>1.9.2</version>  
         </dependency>
+        -->
 
 	<!-- 	
 	<dependency>
@@ -447,6 +459,7 @@
                         <encoding>UTF-8</encoding>
                     </configuration>
                 </plugin>
+                <!--
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>hibernate3-maven-plugin</artifactId>
@@ -467,6 +480,7 @@
                         </dependency>
                     </dependencies>
                 </plugin>
+                -->
                 <!-- EMMA -->
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
