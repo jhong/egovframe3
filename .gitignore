@@ -1,6 +1,9 @@
 .DS_Store
 build/*
 target/*
+src/main/resources/egovframework/egovProps/globals.properties
+src/test/resources/egovframeworktest/egovProps/globals.properties
+src/main/webapp/WEB-INF/classes/*
 src/script/altibase/*
 src/script/cubrid/*
 src/script/mysql/*
