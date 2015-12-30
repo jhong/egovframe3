@@ -1,0 +1,15 @@
+.DS_Store
+build/*
+target/*
+src/script/altibase/*
+src/script/cubrid/*
+src/script/mysql/*
+src/script/tibero/*
+src/main/resources/egovframework/sqlmap/**/*_Altibase.xml
+src/main/resources/egovframework/sqlmap/**/*_Cubrid.xml
+src/main/resources/egovframework/sqlmap/**/*_Mysql.xml
+src/main/resources/egovframework/sqlmap/**/*_Tibero.xml
+/src/main/resources/egovframework/sqlmap/config/altibase/*
+/src/main/resources/egovframework/sqlmap/config/cubrid/*
+/src/main/resources/egovframework/sqlmap/config/mysql/*
+/src/main/resources/egovframework/sqlmap/config/tibero/*

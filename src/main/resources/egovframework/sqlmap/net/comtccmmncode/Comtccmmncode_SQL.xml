@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Comtccmmncode">
+	
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias  alias="comtccmmncodeSerarchVO" type="net.ecplaza.sym.ccm.service.ComtccmmncodeDefaultVO"/>
+	
+	<resultMap id="comtccmmncode" class="net.ecplaza.sym.ccm.service.ComtccmmncodeVO">
+		<result property="codeId" column="CODE_ID" columnIndex="1"/>
+		<result property="codeIdNm" column="CODE_ID_NM" columnIndex="2"/>
+		<result property="codeIdDc" column="CODE_ID_DC" columnIndex="3"/>
+		<result property="useAt" column="USE_AT" columnIndex="4"/>
+		<result property="clCode" column="CL_CODE" columnIndex="5"/>
+		<result property="frstRegistPnttm" column="FRST_REGIST_PNTTM" columnIndex="6"/>
+		<result property="frstRegisterId" column="FRST_REGISTER_ID" columnIndex="7"/>
+		<result property="lastUpdtPnttm" column="LAST_UPDT_PNTTM" columnIndex="8"/>
+		<result property="lastUpdusrId" column="LAST_UPDUSR_ID" columnIndex="9"/>
+	</resultMap>
+	
+	<insert id="comtccmmncodeDAO.insertComtccmmncode_S">
+		<![CDATA[
+			INSERT INTO COMTCCMMNCODE 
+				( CODE_ID
+				  , CODE_ID_NM
+				  , CODE_ID_DC
+				  , USE_AT
+				  , CL_CODE
+				  , FRST_REGIST_PNTTM
+				  , FRST_REGISTER_ID
+				  , LAST_UPDT_PNTTM
+				  , LAST_UPDUSR_ID )
+			VALUES ( #codeId#
+				  , #codeIdNm#
+				  , #codeIdDc#
+				  , #useAt#
+				  , #clCode#
+				  , #frstRegistPnttm#
+				  , #frstRegisterId#
+				  , #lastUpdtPnttm#
+				  , #lastUpdusrId# )
+		]]>
+	</insert>
+	
+	<update id="comtccmmncodeDAO.updateComtccmmncode_S">
+		<![CDATA[
+			UPDATE COMTCCMMNCODE
+			SET CODE_ID=#codeId#
+				, CODE_ID_NM=#codeIdNm#
+				, CODE_ID_DC=#codeIdDc#
+				, USE_AT=#useAt#
+				, CL_CODE=#clCode#
+				, FRST_REGIST_PNTTM=#frstRegistPnttm#
+				, FRST_REGISTER_ID=#frstRegisterId#
+				, LAST_UPDT_PNTTM=#lastUpdtPnttm#
+				, LAST_UPDUSR_ID=#lastUpdusrId#
+						WHERE CODE_ID=#codeId#
+				]]>
+	</update>
+	
+	<delete id="comtccmmncodeDAO.deleteComtccmmncode_S">
+		<![CDATA[
+			DELETE FROM COMTCCMMNCODE 
+						WHERE CODE_ID=#codeId#
+				]]>
+	</delete>
+	
+	<select id="comtccmmncodeDAO.selectComtccmmncode_S" resultMap="comtccmmncode">
+		<![CDATA[
+			SELECT
+				CODE_ID
+				, CODE_ID_NM
+				, CODE_ID_DC
+				, USE_AT
+				, CL_CODE
+				, FRST_REGIST_PNTTM
+				, FRST_REGISTER_ID
+				, LAST_UPDT_PNTTM
+				, LAST_UPDUSR_ID
+			FROM COMTCCMMNCODE
+						WHERE CODE_ID=#codeId#
+				]]>
+	</select>
+	
+	<select id="comtccmmncodeDAO.selectComtccmmncodeList_D" parameterClass="comtccmmncodeSerarchVO" resultClass="egovMap">
+SELECT * FROM (
+	SELECT A.*, ROWNUM RNUM FROM (
+				SELECT
+								CODE_ID
+								, CODE_ID_NM
+								, CODE_ID_DC
+								, USE_AT
+								, CL_CODE
+								, FRST_REGIST_PNTTM
+								, FRST_REGISTER_ID
+								, LAST_UPDT_PNTTM
+								, LAST_UPDUSR_ID
+						FROM COMTCCMMNCODE
+				WHERE 1=1
+				<isEqual prepend="AND" property="searchCondition" compareValue="0">
+					CODE_ID = #searchKeyword#
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="1">
+					CODE_ID_NM LIKE '%' || #searchKeyword# || '%'
+				</isEqual>
+					ORDER BY 
+						CODE_ID DESC
+		
+		<![CDATA[					
+	) A WHERE ROWNUM <= #lastIndex#
+)WHERE RNUM > #firstIndex#
+]]>
+	</select>	
+	<select id="comtccmmncodeDAO.selectComtccmmncodeListTotCnt_S" parameterClass="comtccmmncodeSerarchVO" resultClass="int">
+			SELECT COUNT(*) totcnt
+			FROM COMTCCMMNCODE
+			WHERE 1=1
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				CODE_ID = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				CODE_ID_NM LIKE '%' || #searchKeyword# || '%'
+			</isEqual>
+	</select>
+
+</sqlMap>
