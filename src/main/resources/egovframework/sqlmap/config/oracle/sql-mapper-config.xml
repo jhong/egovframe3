@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+    
+    <typeAliases>
+    	<typeAlias alias="empVO" type="egovframework.sample.emp.service.EmpVO" />
+    	<typeAlias alias="searchVO" type="egovframework.sample.common.SearchVO" />
+
+		<!--
+		<typeAlias alias="deptVO" type="egovframework.sample.dept.service.DeptVO" />
+    	    	
+    	<typeAlias alias="testVO" type="egovframework.sample.test.service.TestVO" />
+    	<typeAlias alias="test2VO" type="egovframework.sample.test2.service.Test2VO" />
+    	-->
+    </typeAliases>
+    
+<!-- 
+	<mappers>
+        <mapper resource="META-INF/sqlmap/mappers/mysql/department_mysql.xml" />
+        <mapper resource="META-INF/sqlmap/mappers/mysql/employee_mysql.xml" />
+   </mappers> 
+ -->
+ 
+</configuration>
