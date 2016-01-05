@@ -17,6 +17,8 @@ package egovframework.sample.emp.service.impl;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import egovframework.rte.psl.dataaccess.EgovAbstractMapper;
@@ -41,6 +43,11 @@ import egovframework.sample.emp.service.EmpVO;
 public class EmpMapper extends EgovAbstractMapper {
 	
 	/**
+	* logger
+	*/
+	private final Logger logger = LoggerFactory.getLogger(getClass());
+	
+	/**
 	 * DB에서 사원목록을 조회한다.
 	 * 
 	 * @param empVO
@@ -49,7 +56,11 @@ public class EmpMapper extends EgovAbstractMapper {
 	 */
 	@SuppressWarnings("unchecked")
 	public List<EmpVO> retrieveEmpList(EmpVO empVO) throws Exception {
-		return selectList("EmpMapper.retrieveEmpList", empVO);
+		List<EmpVO> result = selectList("EmpMapper.retrieveEmpList", empVO);
+		for (int i=0; result!=null && i<result.size(); i++) {
+			logger.info("retrieveEmpList() i={}", i+", empNo=["+result.get(i).getEmpNo()+"]");
+		}
+		return result;
 	}
 
 	/**
@@ -60,7 +71,8 @@ public class EmpMapper extends EgovAbstractMapper {
 	 * @throws Exception
 	 */
 	public EmpVO retrieveEmp(EmpVO empVO) throws Exception {
-		return (EmpVO) selectByPk("EmpMapper.retrieveEmp", empVO);
+		logger.info("retrieveEmp() start... empVO.getEmpNo()={}", empVO.getEmpNo());
+		return (EmpVO) selectOne("EmpMapper.retrieveEmp", empVO);
 	}
 
 	/**

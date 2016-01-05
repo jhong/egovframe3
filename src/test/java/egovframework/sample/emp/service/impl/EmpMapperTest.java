@@ -61,7 +61,7 @@ public class EmpMapperTest {
 	public void retrieveEmp() throws Exception {
 		// parameters
 		EmpVO empVO = new EmpVO();
-		empVO.setEmpNo("EMPLOYEE-00000001");
+		empVO.setEmpNo("EMPLOYEE-00000001   ");
 		
 		EmpVO result = mapper.retrieveEmp(empVO);
 		logger.debug("retrieveEmp() result={}", result);

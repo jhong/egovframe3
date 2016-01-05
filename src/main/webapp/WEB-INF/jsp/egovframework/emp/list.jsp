@@ -20,6 +20,7 @@
 	}
 	function detailEmployee(empNo) {
 		document.empForm.empNo.value = empNo;
+		console.log("detailEmployee() document.empForm.empNo.value=["+document.empForm.empNo.value+"]");
 		document.empForm.action = "<c:url value='/emp/retrieveEmployee.do'/>";
 		document.empForm.submit();
 	}

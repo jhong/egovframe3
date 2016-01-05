@@ -19,6 +19,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -108,14 +109,17 @@ public class EmpController {
 	 */
 	@RequestMapping(value = "/emp/retrieveEmployee.do")
 	public String retrieveEmp(@RequestParam("empNo") String empNo, ModelMap model) throws Exception {
+		logger.info("retrieveEmp() start... empNo={}", "["+empNo+"]"); // 오른쪽 공백 사라짐
+		empNo = StringUtils.rightPad(empNo, 20, " ");
+		logger.info("retrieveEmp() modified empNo={}", "["+empNo+"]");
 		
 		// 사원번호로 사원정보 조회
 		EmpVO empVO = new EmpVO();
 		empVO.setEmpNo(empNo);
-		logger.info("retrieveEmp() empNo={}"+empNo+", empVO="+empVO);
+		logger.info("retrieveEmp() empNo=[{}", empNo+"], empVO="+empVO);
 		
 		EmpVO resultEmployee = empService.retrieveEmp(empVO);
-		logger.info("retrieveEmp() resultEmployee={}"+resultEmployee);
+		logger.info("retrieveEmp() resultEmployee={}", resultEmployee);
 		model.addAttribute("emp", resultEmployee);
 
 		return "egovframework/emp/detail";
