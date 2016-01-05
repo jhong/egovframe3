@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import egovframework.com.cmm.annotation.IncludedInfo;
 import egovframework.rte.fdl.property.EgovPropertyService;
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 import egovframework.sample.emp.service.EmpService;
@@ -69,6 +70,7 @@ public class EmpController {
 	 * @return "emp/list"
 	 * @throws Exception
 	 */
+	@IncludedInfo(name="사원목록(MyBatis예제)", listUrl="/emp/retrieveEmployeeList.do", order = 1970 ,gid = 60)
 	@RequestMapping(value = "/emp/retrieveEmployeeList.do")
 	public String retrieveEmpList(@ModelAttribute("emp") EmpVO empVO, ModelMap model) throws Exception {
 
