@@ -6,7 +6,7 @@
 		<context:exclude-filter expression="org.springframework.stereotype.Repository" type="annotation"/>
 	</context:component-scan>
 
-	<!-- For Pagination Tag [MockMvc 사용한 Controller 테스트시 오류 발생하여 주석처리]
+	<!-- For Pagination Tag -->
 	<bean class="egovframework.com.cmm.ImagePaginationRenderer" id="imageRenderer"/>
 
 	<bean class="egovframework.rte.ptl.mvc.tags.ui.pagination.DefaultPaginationManager" id="paginationManager">
@@ -16,15 +16,12 @@
 			</map>
 		</property>
 	</bean>
-	-->
 
-	<!-- [MockMvc 사용한 Controller 테스트시 오류 발생하여 주석처리]
     <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
         <property name="webBindingInitializer">
             <bean class="egovframework.com.cmm.web.EgovBindingInitializer"/>
         </property>
     </bean>
-    -->
     <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>
 
     <!-- IP 정보 기록 및 로그인 체크가 필요한 URL과 로그인 여부를 체크해줄 인터셉터를 등록한다. -->
