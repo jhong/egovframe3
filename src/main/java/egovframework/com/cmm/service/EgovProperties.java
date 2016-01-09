@@ -47,9 +47,16 @@ public class EgovProperties {
 
 	//public static final String RELATIVE_PATH_PREFIX = EgovProperties.class.getResource("").getPath()	+ FILE_SEPARATOR+ ".." + FILE_SEPARATOR  + ".." + FILE_SEPARATOR;
 
-	public static final String RELATIVE_PATH_PREFIX = EgovProperties.class.getResource("").getPath().substring(0, EgovProperties.class.getResource("").getPath().lastIndexOf("com"));
+//	public static final String RELATIVE_PATH_PREFIX = EgovProperties.class.getResource("").getPath().substring(0, EgovProperties.class.getResource("").getPath().lastIndexOf("com"));
 
-	public static final String GLOBALS_PROPERTIES_FILE = RELATIVE_PATH_PREFIX + "egovProps" + FILE_SEPARATOR + "globals.properties";
+//	public static final String GLOBALS_PROPERTIES_FILE = RELATIVE_PATH_PREFIX + "egovProps" + FILE_SEPARATOR + "globals.properties";
+
+	// by jhong (2016.01.09)
+	public static final String RELATIVE_PATH_PREFIX = EgovProperties.class.getResource("").getPath().substring(0, EgovProperties.class.getResource("").getPath().lastIndexOf("com")-1);
+	public static final String GLOBALS_PROPERTIES_FILE = 
+			(RELATIVE_PATH_PREFIX.indexOf("test-classes")  > 0 ? RELATIVE_PATH_PREFIX +"test" : "")
+			+ (RELATIVE_PATH_PREFIX.indexOf("webapp")  > 0 ? System.getProperty("user.home") + FILE_SEPARATOR + "git" + FILE_SEPARATOR + "egovframe3" + FILE_SEPARATOR + "src" + FILE_SEPARATOR + "main" + FILE_SEPARATOR + "resources" + FILE_SEPARATOR + "egovframework" : "")
+			+ FILE_SEPARATOR + "egovProps" + FILE_SEPARATOR + "globals.properties";
 
 	/**
 	 * 인자로 주어진 문자열을 Key값으로 하는 상대경로 프로퍼티 값을 절대경로로 반환한다(Globals.java 전용)
@@ -69,7 +76,7 @@ public class EgovProperties {
 			props.load(new BufferedInputStream(fis));
 			
 			value = props.getProperty(keyName).trim();
-			value = RELATIVE_PATH_PREFIX + "egovProps" + System.getProperty("file.separator") + value;
+			value = RELATIVE_PATH_PREFIX + FILE_SEPARATOR + "egovProps" + FILE_SEPARATOR + value;
 		} catch (FileNotFoundException fne) {
 			LOGGER.debug("Property file not found.", fne);
 			throw new RuntimeException("Property file not found", fne);
@@ -133,7 +140,7 @@ public class EgovProperties {
 			fis.close();
 
 			String value = props.getProperty(key);
-			value = RELATIVE_PATH_PREFIX + "egovProps" + System.getProperty("file.separator") + value;
+			value = RELATIVE_PATH_PREFIX + FILE_SEPARATOR + "egovProps" + FILE_SEPARATOR + value;
 			
 			return value;
 		} catch (FileNotFoundException fne) {

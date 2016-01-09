@@ -439,6 +439,13 @@
 			<scope>test</scope>
 		</dependency>
 
+		<!-- com.sun.star.auth.InvalidArgumentException 시용 위해 추가 -->
+		<dependency>
+			<groupId>org.openoffice</groupId>
+			<artifactId>unoil</artifactId>
+			<version>4.1.2</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
