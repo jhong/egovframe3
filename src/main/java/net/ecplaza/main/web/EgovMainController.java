@@ -228,7 +228,8 @@ public class EgovMainController {
     		//최근 로그아웃 시간 등에 대한 확보 후 메인 컨텐츠로 활용
     	}
 
-      	return "main/inc/EgovIncLeftmenu";
+//      	return "main/inc/EgovIncLeftmenu";
+      	return "net/inc/EgovIncLeftmenu";
     }
 
 }

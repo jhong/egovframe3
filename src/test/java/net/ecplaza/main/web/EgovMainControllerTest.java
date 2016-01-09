@@ -60,4 +60,18 @@ public class EgovMainControllerTest {
 		 .andExpect(forwardedUrl("/WEB-INF/jsp/egovframework/com/EgovMainView.jsp"));
 	}	
 
+	/**
+	 * selectMainMenuLeft() test
+	 * @throws Exception
+	 */
+	@Test
+	public void selectMainMenuLeft() throws Exception{
+		 this.mockMvc.perform(get("/sym/mms/EgovMainMenuLeft.do"))
+		 .andDo(print())
+		 .andExpect(status().isOk())
+//		 .andExpect(model().attributeExists("result"))
+		 .andExpect(view().name("net/inc/EgovIncLeftmenu"))
+		 .andExpect(forwardedUrl("/WEB-INF/jsp/net/inc/EgovIncLeftmenu.jsp"));
+	}	
+
 }
