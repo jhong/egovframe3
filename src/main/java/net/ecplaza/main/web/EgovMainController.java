@@ -76,8 +76,8 @@ public class EgovMainController {
 	 * @param model
 	 * @exception Exception Exception
 	 */
-//	@RequestMapping(value = "/cmm/main/mainPage.do")
-	@RequestMapping(value = "/index.do")
+	@RequestMapping(value = "/cmm/main/mainPage.do")
+//	@RequestMapping(value = "/index.do")
 	public String getMgtMainPage(HttpServletRequest request, ModelMap model)
 	  throws Exception{
 
@@ -160,8 +160,8 @@ public class EgovMainController {
 //     // 설문참여 메인 컨텐츠 조회 끝 -----------------------------------
 
 
-//		return "main/EgovMainView";
-		return "egovframework/com/EgovMainView";
+		return "main/EgovMainView";
+//		return "egovframework/com/EgovMainView";
 	}
 
 	/**
@@ -191,10 +191,8 @@ public class EgovMainController {
     		model.addAttribute("list_menulist", menuManageService.selectMainMenuLeft(menuManageVO));
     	}else{
     		menuManageVO.setAuthorCode("ROLE_ANONYMOUS");
-//    		model.addAttribute("list_headmenu", menuManageService.selectMainMenuHeadByAuthor(menuManageVO));
-//    		model.addAttribute("list_menulist", menuManageService.selectMainMenuLeftByAuthor(menuManageVO));
-    		model.addAttribute("list_headmenu", menuManageService.selectMainMenuHead(menuManageVO));
-    		model.addAttribute("list_menulist", menuManageService.selectMainMenuLeft(menuManageVO));
+    		model.addAttribute("list_headmenu", menuManageService.selectMainMenuHeadByAuthor(menuManageVO));
+    		model.addAttribute("list_menulist", menuManageService.selectMainMenuLeftByAuthor(menuManageVO));
     	}
 
     	if(flag==null){
@@ -228,8 +226,7 @@ public class EgovMainController {
     		//최근 로그아웃 시간 등에 대한 확보 후 메인 컨텐츠로 활용
     	}
 
-//      	return "main/inc/EgovIncLeftmenu";
-      	return "net/inc/EgovIncLeftmenu";
+      	return "main/inc/EgovIncLeftmenu";
     }
 
 }

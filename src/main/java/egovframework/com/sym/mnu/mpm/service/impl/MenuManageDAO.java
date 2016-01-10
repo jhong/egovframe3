@@ -176,6 +176,26 @@ public class MenuManageDAO extends EgovComAbstractDAO{
 	}
 
 	/**
+	 * MainMenu Head Menu 조회 - Anonymous
+	 * @param vo MenuManageVO
+	 * @return List
+	 * @exception Exception
+	 */
+	public List<?> selectMainMenuHeadByAuthor(MenuManageVO vo) throws Exception{
+		return list("menuManageDAO.selectMainMenuHeadByAuthor", vo);
+	}
+
+	/**
+	 * MainMenu Left Menu 조회 - Anonymous
+	 * @param vo MenuManageVO
+	 * @return List
+	 * @exception Exception
+	 */
+	public List<?> selectMainMenuLeftByAuthor(MenuManageVO vo) throws Exception{
+		return list("menuManageDAO.selectMainMenuLeftByAuthor", vo);
+	}
+
+	/**
 	 * MainMenu Head MenuURL 조회
 	 * @param vo MenuManageVO
 	 * @return  String

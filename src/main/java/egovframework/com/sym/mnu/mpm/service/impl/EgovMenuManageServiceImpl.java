@@ -8,7 +8,6 @@ import egovframework.com.sym.mnu.mpm.service.EgovMenuManageService;
 import egovframework.com.sym.mnu.mpm.service.MenuManageVO;
 import egovframework.com.sym.prm.service.ProgrmManageVO;
 import egovframework.com.sym.prm.service.impl.ProgrmManageDAO;
-
 import egovframework.rte.fdl.cmmn.EgovAbstractServiceImpl;
 import egovframework.rte.fdl.excel.EgovExcelService;
 
@@ -184,6 +183,28 @@ public class EgovMenuManageServiceImpl extends EgovAbstractServiceImpl implement
 	 */
 	public List<?> selectMainMenuLeft(MenuManageVO vo) throws Exception {
 		return menuManageDAO.selectMainMenuLeft(vo);
+	}
+
+	/**
+	 * MainMenu Head Menu 조회
+	 * @param vo MenuManageVO
+	 * @return List
+	 * @exception Exception
+	 */
+	@Override
+	public List<?> selectMainMenuHeadByAuthor(MenuManageVO vo) throws Exception {
+   		return menuManageDAO.selectMainMenuHeadByAuthor(vo);
+	}
+
+	/**
+	 * MainMenu Head Left 조회
+	 * @param vo MenuManageVO
+	 * @return List
+	 * @exception Exception
+	 */
+	@Override
+	public List<?> selectMainMenuLeftByAuthor(MenuManageVO vo) throws Exception {
+   		return menuManageDAO.selectMainMenuLeftByAuthor(vo);
 	}
 
 	/**

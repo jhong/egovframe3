@@ -115,6 +115,22 @@ public interface EgovMenuManageService {
 	List<?> selectMainMenuLeft(MenuManageVO vo) throws Exception;
 
 	/**
+	 * MainMenu Head Menu 조회 - Anonymous
+	 * @param vo MenuManageVO
+	 * @return List
+	 * @exception Exception
+	 */
+	List<?> selectMainMenuHeadByAuthor(MenuManageVO vo) throws Exception;
+
+	/**
+	 * MainMenu Head Left 조회 - Anonymous
+	 * @param vo MenuManageVO
+	 * @return List
+	 * @exception Exception
+	 */
+	List<?> selectMainMenuLeftByAuthor(MenuManageVO vo) throws Exception;
+
+	/**
 	 * MainMenu Head MenuURL 조회
 	 * @param iMenuNo int
 	 * @param sUniqId String
