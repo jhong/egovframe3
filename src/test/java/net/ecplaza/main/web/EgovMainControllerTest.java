@@ -70,8 +70,8 @@ public class EgovMainControllerTest {
 		 .andDo(print())
 		 .andExpect(status().isOk())
 //		 .andExpect(model().attributeExists("result"))
-		 .andExpect(view().name("net/inc/EgovIncLeftmenu"))
-		 .andExpect(forwardedUrl("/WEB-INF/jsp/net/inc/EgovIncLeftmenu.jsp"));
+		 .andExpect(view().name("main/inc/EgovIncLeftmenu"))
+		 .andExpect(forwardedUrl("/WEB-INF/jsp/main/inc/EgovIncLeftmenu.jsp"));
 	}	
 
 }
