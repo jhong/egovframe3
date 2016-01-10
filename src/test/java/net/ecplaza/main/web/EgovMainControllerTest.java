@@ -52,12 +52,12 @@ public class EgovMainControllerTest {
 	 */
 	@Test
 	public void getMgtMainPage() throws Exception{
-		 this.mockMvc.perform(get("/index.do"))
+		 this.mockMvc.perform(get("/cmm/main/mainPage.do"))
 		 .andDo(print())
 		 .andExpect(status().isOk())
 //		 .andExpect(model().attributeExists("result"))
-		 .andExpect(view().name("egovframework/com/EgovMainView"))
-		 .andExpect(forwardedUrl("/WEB-INF/jsp/egovframework/com/EgovMainView.jsp"));
+		 .andExpect(view().name("main/EgovMainView"))
+		 .andExpect(forwardedUrl("/WEB-INF/jsp/main/EgovMainView.jsp"));
 	}	
 
 	/**
