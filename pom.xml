@@ -444,6 +444,217 @@
 			<version>4.1.2</version>
 		</dependency>
 
+	
+	<dependency>
+            <groupId>com.googlecode.log4jdbc</groupId>
+            <artifactId>log4jdbc</artifactId>
+            <version>1.2</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>slf4j-api</artifactId>
+                    <groupId>org.slf4j</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+	
+	<dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>2.5</version>
+            <scope>provided</scope>
+        </dependency>
+	
+	<dependency>
+            <groupId>org.jasypt</groupId>
+            <artifactId>jasypt</artifactId>
+            <version>1.9.2</version>
+        </dependency>
+	
+	<dependency>
+            <groupId>net.sf.ehcache</groupId>
+            <artifactId>ehcache-core</artifactId>
+            <version>2.6.9</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>slf4j-api</artifactId>
+                    <groupId>org.slf4j</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+	
+	<dependency>
+            <groupId>net.sf.ehcache</groupId>
+            <artifactId>ehcache-terracotta</artifactId>
+            <version>2.1.1</version>
+        </dependency>
+	
+	<dependency>
+            <groupId>org.quartz-scheduler</groupId>
+            <artifactId>quartz</artifactId>
+            <version>2.1.7</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>slf4j-api</artifactId>
+                    <groupId>org.slf4j</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+	
+	<dependency>
+            <groupId>org.quartz-scheduler</groupId>
+            <artifactId>quartz-jobs</artifactId>
+            <version>2.2.1</version>
+        </dependency>
+	
+	<dependency>
+            <groupId>oro</groupId>
+            <artifactId>oro</artifactId>
+            <version>2.0.8</version>
+        </dependency>
+	
+	<dependency>
+            <groupId>ldapsdk</groupId>
+            <artifactId>ldapsdk</artifactId>
+            <version>4.1</version>
+        </dependency>
+	
+	<dependency>
+            <groupId>org.twitter4j</groupId>
+            <artifactId>twitter4j-core</artifactId>
+            <version>4.0.2</version>
+        </dependency>
+	
+	<dependency>
+            <groupId>net.sourceforge.ajaxtags</groupId>
+            <artifactId>ajaxtags-resources</artifactId>
+            <version>1.5.7</version>
+        </dependency>
+	
+	<dependency>
+            <groupId>com.ckeditor</groupId>
+            <artifactId>ckeditor-java-core</artifactId>
+            <version>3.5.3</version>
+        </dependency>
+	
+	<dependency>
+            <groupId>org.apache.xmlgraphics</groupId>
+            <artifactId>batik-ext</artifactId>
+            <version>1.7</version>
+        </dependency>
+	
+	<dependency>
+            <groupId>org.springframework.social</groupId>
+            <artifactId>spring-social-facebook-web</artifactId>
+            <version>1.1.1.RELEASE</version>
+        </dependency>
+	
+	<dependency>
+            <groupId>org.springframework.social</groupId>
+            <artifactId>spring-social-twitter</artifactId>
+            <version>1.1.0.RELEASE</version>
+        </dependency>
+	
+	<dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.3.4</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>commons-logging</artifactId>
+                    <groupId>commons-logging</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+	
+	<dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.4.180</version>
+        </dependency>
+	
+	<dependency>
+            <groupId>org.springframework.social</groupId>
+            <artifactId>spring-social-security</artifactId>
+            <version>1.1.0.RELEASE</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>spring-security-web</artifactId>
+                    <groupId>org.springframework.security</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+	
+	<dependency>
+            <groupId>javax.websocket</groupId>
+            <artifactId>javax.websocket-api</artifactId>
+            <version>1.0</version>
+            <scope>provided</scope>
+        </dependency>
+	
+	<dependency>
+            <groupId>org.glassfish</groupId>
+            <artifactId>javax.json</artifactId>
+            <version>1.0.4</version>
+        </dependency>
+	
+	<dependency>
+            <groupId>org.springframework.ldap</groupId>
+            <artifactId>spring-ldap-core</artifactId>
+            <version>2.0.2.RELEASE</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-beans</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-core</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-tx</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>jcl-over-slf4j</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+	
+	<dependency>  
+            <groupId>org.codehaus.jackson</groupId>  
+            <artifactId>jackson-mapper-asl</artifactId>  
+            <version>1.9.2</version>  
+        </dependency>
+	
+	<dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.31</version>
+        </dependency>
+	
+	<!--
+	<dependency>
+            <groupId>kr.go.gpki</groupId>
+            <artifactId>gpkisecureweb</artifactId>
+            <version>1.0.4.9</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/src/main/webapp/WEB-INF/lib/gpkisecureweb-1.0.4.9.jar</systemPath>
+        </dependency>
+	
+	<dependency>
+            <groupId>kr.go.gpki</groupId>
+            <artifactId>libgpkiapi_jni</artifactId>
+            <version>1.4.0.0</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/src/main/webapp/WEB-INF/lib/libgpkiapi_jni-1.4.0.0.jar</systemPath>
+        </dependency>
+        -->
+        
 	</dependencies>
 
 	<build>

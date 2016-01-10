@@ -1,4 +1,8 @@
-<web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="WebApp_ID" version="2.5" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_ID" version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 <!--
     수정일          수성자                          수정내용
    ==========      ========      =================================================
@@ -271,12 +275,4 @@
       <location>/code500.jsp</location>
     </error-page>
 
-	<filter>
-        <filter-name>LoginPolicyFilter</filter-name>
-        <filter-class>egovframework.com.uat.uap.filter.EgovLoginPolicyFilter</filter-class>
-    </filter>
-	<filter-mapping>
-        <filter-name>LoginPolicyFilter</filter-name>
-        <url-pattern>/uat/uia/actionLogin.do</url-pattern>
-    </filter-mapping>
 </web-app>
