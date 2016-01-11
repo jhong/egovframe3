@@ -303,7 +303,10 @@
     </filter>
 	<filter-mapping>
         <filter-name>springSecurityFilterChain</filter-name>
+        <!-- 모든 요청에 대하여 로그인여부 체크함
         <url-pattern>/*</url-pattern>
+        -->
+        <url-pattern>/aaa/*</url-pattern>
     </filter-mapping>
 	<filter-mapping>
         <filter-name>EgovSpringSecurityLogoutFilter</filter-name>

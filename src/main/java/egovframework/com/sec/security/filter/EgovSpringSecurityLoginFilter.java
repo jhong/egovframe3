@@ -74,11 +74,14 @@ public class EgovSpringSecurityLoginFilter implements Filter {
 		HttpSession session = httpRequest.getSession();
 		//String isLocallyAuthenticated = (String)session.getAttribute("isLocallyAuthenticated");
 		String isRemotelyAuthenticated = (String) session.getAttribute("isRemotelyAuthenticated");
+		LOGGER.info("EgovSpringSecurityLoginFilter doFilter() isRemotelyAuthenticated={}", isRemotelyAuthenticated);
 
 		String requestURL = ((HttpServletRequest) request).getRequestURI();
+		LOGGER.info("EgovSpringSecurityLoginFilter doFilter() requestURL={}", requestURL);
 
 		//스프링 시큐리티 인증이 처리 되었는지 EgovUserDetailsHelper.getAuthenticatedUser() 메서드를 통해 확인한다.
 		//context-common.xml 빈 설정에 egovUserDetailsSecurityService를 등록 해서 사용해야 정상적으로 동작한다.
+		LOGGER.info("EgovSpringSecurityLoginFilter doFilter() EgovUserDetailsHelper.getAuthenticatedUser()={}", EgovUserDetailsHelper.getAuthenticatedUser());
 		if (EgovUserDetailsHelper.getAuthenticatedUser() == null || requestURL.contains(loginProcessURL)) {
 
 			if (isRemotelyAuthenticated != null && isRemotelyAuthenticated.equals("true")) {
@@ -123,10 +126,12 @@ public class EgovSpringSecurityLoginFilter implements Filter {
 				if (requestURL.contains(loginProcessURL)) {
 
 					String password = httpRequest.getParameter("password");
+					LOGGER.info("EgovSpringSecurityLoginFilter doFilter() password={}", password);
 					
 					// 보안점검 후속 조치(Password 검증)
 					if (password == null || password.equals("") || password.length() < 8 || password.length() > 20) {
 						httpRequest.setAttribute("message", egovMessageSource.getMessage("fail.common.login.password"));
+						LOGGER.info("EgovSpringSecurityLoginFilter doFilter() message={}", httpRequest.getAttribute("message"));
 						RequestDispatcher dispatcher = httpRequest.getRequestDispatcher(loginURL);
 						dispatcher.forward(httpRequest, httpResponse);
 
@@ -145,6 +150,7 @@ public class EgovSpringSecurityLoginFilter implements Filter {
 
 						//사용자 입력 id, password로 DB 인증을 실행함
 						loginVO = loginService.actionLogin(loginVO);
+						LOGGER.info("EgovSpringSecurityLoginFilter doFilter() loginVO={}", loginVO);
 
 						if (loginVO != null && loginVO.getId() != null && !loginVO.getId().equals("")) {
 							//세션 로그인
@@ -200,6 +206,7 @@ public class EgovSpringSecurityLoginFilter implements Filter {
 			}
 		}
 
+		LOGGER.info("EgovSpringSecurityLoginFilter doFilter() end...");
 		chain.doFilter(request, response);
 	}
 
