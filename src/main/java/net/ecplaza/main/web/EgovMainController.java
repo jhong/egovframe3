@@ -18,6 +18,8 @@ import egovframework.com.cop.bbs.service.BoardVO;
 import egovframework.com.cop.bbs.service.EgovBBSManageService;
 import egovframework.com.sym.mnu.mpm.service.EgovMenuManageService;
 import egovframework.com.sym.mnu.mpm.service.MenuManageVO;
+import egovframework.com.uss.olh.faq.service.EgovFaqManageService;
+import egovframework.com.uss.olh.faq.service.FaqManageDefaultVO;
 import egovframework.rte.fdl.security.userdetails.util.EgovUserDetailsHelper;
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
@@ -50,10 +52,10 @@ public class EgovMainController {
 	@Resource(name = "meunManageService")
     private EgovMenuManageService menuManageService;
 
-//	/** FaqManageService */
-//	@Resource(name = "FaqManageService")
-//    private EgovFaqManageService faqManageService;
-//
+	/** FaqManageService */
+	@Resource(name = "FaqManageService")
+    private EgovFaqManageService faqManageService;
+
 //	/** egovQustnrRespondInfoService */
 //	@Resource(name = "egovQustnrRespondInfoService")
 //	private EgovQustnrRespondInfoService egovQustnrRespondInfoService;
@@ -125,24 +127,24 @@ public class EgovMainController {
 
 
 
-//		// FAQ 메인 컨텐츠 조회 시작 ---------------------------------
-//		/** EgovPropertyService.SiteList */
-//		FaqManageDefaultVO searchVO = new FaqManageDefaultVO();
-//		searchVO.setPageUnit(3);
-//    	searchVO.setPageSize(10);
-//
-//    	/** pageing */
-//    	paginationInfo.setCurrentPageNo(searchVO.getPageIndex());
-//		paginationInfo.setRecordCountPerPage(searchVO.getPageUnit());
-//		paginationInfo.setPageSize(searchVO.getPageSize());
-//
-//		searchVO.setFirstIndex(paginationInfo.getFirstRecordIndex());
-//		searchVO.setLastIndex(paginationInfo.getLastRecordIndex());
-//		searchVO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
-//
-//        model.addAttribute("faqList", faqManageService.selectFaqList(searchVO));
-//
-//		// FAQ 메인 컨텐츠 조회 끝 -----------------------------------
+		// FAQ 메인 컨텐츠 조회 시작 ---------------------------------
+		/** EgovPropertyService.SiteList */
+		FaqManageDefaultVO searchVO = new FaqManageDefaultVO();
+		searchVO.setPageUnit(3);
+    	searchVO.setPageSize(10);
+
+    	/** pageing */
+    	paginationInfo.setCurrentPageNo(searchVO.getPageIndex());
+		paginationInfo.setRecordCountPerPage(searchVO.getPageUnit());
+		paginationInfo.setPageSize(searchVO.getPageSize());
+
+		searchVO.setFirstIndex(paginationInfo.getFirstRecordIndex());
+		searchVO.setLastIndex(paginationInfo.getLastRecordIndex());
+		searchVO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
+
+        model.addAttribute("faqList", faqManageService.selectFaqList(searchVO));
+
+		// FAQ 메인 컨텐츠 조회 끝 -----------------------------------
 //
 //        // 설문참여 메인 컨텐츠 조회 시작 -----------------------------------
 //        ComDefaultVO qVO = new ComDefaultVO();
