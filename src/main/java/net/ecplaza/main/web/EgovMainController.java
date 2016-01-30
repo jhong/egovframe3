@@ -1,10 +1,15 @@
 package net.ecplaza.main.web;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import net.ecplaza.cmm.MenuNode;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -42,6 +47,8 @@ import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 @Controller@SessionAttributes(types = ComDefaultVO.class)
 public class EgovMainController {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(EgovMainController.class);
+	
 	/**
 	 * EgovBBSManageService
 	 */
@@ -184,6 +191,8 @@ public class EgovMainController {
 
     	LoginVO user =
     		EgovUserDetailsHelper.isAuthenticated()? (LoginVO)EgovUserDetailsHelper.getAuthenticatedUser():null;
+    	LOGGER.debug("selectMainMenuHead() user={}", user);
+    		
     	if(EgovUserDetailsHelper.isAuthenticated() && user!=null){
     		menuManageVO.setTmpId(user.getId());
         	menuManageVO.setTmpPassword(user.getPassword());
@@ -209,7 +218,6 @@ public class EgovMainController {
     	}
     }
 
-
     /**
      * 좌측메뉴를 조회한다.
      * @param menuManageVO MenuManageVO
@@ -219,15 +227,37 @@ public class EgovMainController {
      */
     @RequestMapping(value="/sym/mms/EgovMainMenuLeft.do")
     public String selectMainMenuLeft(
+    		@ModelAttribute("menuManageVO") MenuManageVO menuManageVO,
     		ModelMap model)
             throws Exception {
 
     	//LoginVO user = EgovUserDetailsHelper.isAuthenticated()? (LoginVO)EgovUserDetailsHelper.getAuthenticatedUser():null;
-
     	//LoginVO user = (LoginVO)EgovUserDetailsHelper.getAuthenticatedUser();
+    	LoginVO user =
+        		EgovUserDetailsHelper.isAuthenticated()? (LoginVO)EgovUserDetailsHelper.getAuthenticatedUser():null;
+        	LOGGER.debug("selectMainMenuLeft() user={}", user);
+        		
+        	if(EgovUserDetailsHelper.isAuthenticated() && user!=null){
+        		menuManageVO.setTmpId(user.getId());
+            	menuManageVO.setTmpPassword(user.getPassword());
+            	menuManageVO.setTmpUserSe(user.getUserSe());
+            	menuManageVO.setTmpName(user.getName());
+            	menuManageVO.setTmpEmail(user.getEmail());
+            	menuManageVO.setTmpOrgnztId(user.getOrgnztId());
+            	menuManageVO.setTmpUniqId(user.getUniqId());
+        	}else{
+        		menuManageVO.setAuthorCode("ROLE_ANONYMOUS");
+        	}
+
+    		List menuList = menuManageService.selectMainMenuAllByAuthor(menuManageVO);
+    		MenuNode menuTree = menuManageService.makeMenuNode(menuList);
+    		LOGGER.debug("selectMainMenuLeft() menuTrtee={}", menuTree);
+    		model.addAttribute("menuTree", menuTree);
+
     	if(EgovUserDetailsHelper.isAuthenticated()){
     		//인증된 경우 처리할 사항 추가 ...
-    		model.addAttribute("lastLogoutDateTime", "로그아웃 타임: 2011-11-10 11:30");
+    		
+//    		model.addAttribute("lastLogoutDateTime", "로그아웃 타임: 2011-11-10 11:30");
     		//최근 로그아웃 시간 등에 대한 확보 후 메인 컨텐츠로 활용
     	}
 

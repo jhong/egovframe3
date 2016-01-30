@@ -1,17 +1,18 @@
 package egovframework.com.cmm.web;
 
-import egovframework.rte.fdl.property.EgovPropertyService;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
-import net.ecplaza.main.web.EgovMainController;
+import net.ecplaza.cmm.SiteVO;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import egovframework.rte.fdl.property.EgovPropertyService;
 
 /**
  * @Class Name : EgovComUtlController.java
@@ -47,6 +48,7 @@ public class EgovComUtlController {
 	@RequestMapping(value="/EgovPageLink.do")
 	public String moveToPage(@RequestParam("link") String linkPage
 			, @RequestParam(value = "menuNo", required = false) String menuNo
+			, @ModelAttribute("siteVO") SiteVO siteVO
 			, HttpSession session){
 		
 		String link = linkPage;

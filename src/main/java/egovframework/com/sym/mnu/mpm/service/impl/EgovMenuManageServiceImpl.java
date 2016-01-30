@@ -1,17 +1,13 @@
 package egovframework.com.sym.mnu.mpm.service.impl;
 
 import java.io.InputStream;
+import java.util.Enumeration;
+import java.util.Iterator;
 import java.util.List;
 
-import egovframework.com.cmm.ComDefaultVO;
-import egovframework.com.sym.mnu.mpm.service.EgovMenuManageService;
-import egovframework.com.sym.mnu.mpm.service.MenuManageVO;
-import egovframework.com.sym.prm.service.ProgrmManageVO;
-import egovframework.com.sym.prm.service.impl.ProgrmManageDAO;
-import egovframework.rte.fdl.cmmn.EgovAbstractServiceImpl;
-import egovframework.rte.fdl.excel.EgovExcelService;
-
 import javax.annotation.Resource;
+
+import net.ecplaza.cmm.MenuNode;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
@@ -21,6 +17,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
+
+import egovframework.com.cmm.ComDefaultVO;
+import egovframework.com.sym.mnu.mpm.service.EgovMenuManageService;
+import egovframework.com.sym.mnu.mpm.service.MenuManageVO;
+import egovframework.com.sym.prm.service.ProgrmManageVO;
+import egovframework.com.sym.prm.service.impl.ProgrmManageDAO;
+import egovframework.rte.fdl.cmmn.EgovAbstractServiceImpl;
+import egovframework.rte.fdl.excel.EgovExcelService;
 
 /**
  * 메뉴목록관리, 생성, 사이트맵을 처리하는 비즈니스 구현 클래스를 정의한다.
@@ -207,6 +211,129 @@ public class EgovMenuManageServiceImpl extends EgovAbstractServiceImpl implement
    		return menuManageDAO.selectMainMenuLeftByAuthor(vo);
 	}
 
+	/**
+	 * MainMenu Head All 조회
+	 * @param vo MenuManageVO
+	 * @return List
+	 * @exception Exception
+	 */
+	@Override
+	public List<?> selectMainMenuAllByAuthor(MenuManageVO vo) throws Exception {
+   		return menuManageDAO.selectMainMenuAllByAuthor(vo);
+	}
+
+	/**
+	 * MenuNode 구성
+	 * @param menuList
+	 * @return
+	 * @throws Exception
+	 */
+	public MenuNode makeMenuNode(List menuList) throws Exception {
+		MenuNode rootNode = null;
+		if (menuList == null || menuList.size() == 0) return rootNode;
+		
+		for (Iterator<MenuNode> iter = menuList.listIterator(); iter.hasNext(); ) {
+			MenuNode node = iter.next();
+			LOGGER.debug("start... node={}", node);
+			
+			if (rootNode == null && node.getMenuNo() == 0) {
+				rootNode = node;
+//				iter.remove();
+				continue;
+			}
+			
+			/*
+			// menuNo 값으로 상위메뉴 찾기
+			MenuNode parentNode = null; 
+			this.findMenu(rootNode, node.getUpperMenuNo(), parentNode);
+			LOGGER.debug("makeMenuNode() 1 node.getMenuNm={}", node.getMenuNm()+", parentNode="+parentNode);
+			if (parentNode == null) {
+				if (rootNode == null && node.getMenuNo() == 0) {
+					rootNode = node;
+					LOGGER.debug("makeMenuNode() rootNode={}", rootNode);
+				} else {
+					rootNode.add(node);
+				}
+			} else {
+				parentNode.add(node);
+			}
+			LOGGER.debug("makeMenuNode() 2 node.getMenuNm={}", node.getMenuNm()+", parentNode="+parentNode);
+			*/
+			
+			addChildMenu(rootNode, node);
+			LOGGER.debug("makeMenuNode() rootNode.getChildCount()={}", rootNode.getChildCount());
+			
+//			iter.remove();
+		}
+		
+		LOGGER.debug("makeMenuNode() rootNode={}", rootNode);
+		
+		this.traversalMenu(rootNode);
+		
+		return rootNode;
+	}
+	
+	public void addChildMenu(MenuNode parentNode, MenuNode node) throws Exception {
+		if (node.getUpperMenuNo() == parentNode.getMenuNo()) {
+			parentNode.add(node);
+			return;
+		}
+		
+		Enumeration children = parentNode.children();
+		while (children.hasMoreElements()) {
+			MenuNode child = (MenuNode)children.nextElement();
+			if (node.getUpperMenuNo() == child.getMenuNo()) {
+				child.add(node);
+				LOGGER.debug("add node... child.getMenuNo()={}", child.getMenuNo()+", node="+node);
+				break;
+			}
+			
+			if (!child.isLeaf()) addChildMenu(child, node);
+		}
+	}
+	
+	/**
+	 * MenuNode traversal
+	 * 
+	 * @param node
+	 * @throws Exception
+	 */
+	public void traversalMenu(MenuNode node) throws Exception {
+		LOGGER.debug("traversalMenu() start... node={}", node);
+		
+		Enumeration children = node.children();
+		while (children.hasMoreElements()) {
+			MenuNode child = (MenuNode)children.nextElement();
+			LOGGER.debug("traversalMenu()... child={}", child.getMenuNm()+", level="+child.getLevel()+", isLeaf="+child.isLeaf());
+			
+			if (!child.isLeaf()) this.traversalMenu(child);
+		}
+	}
+
+//	/**
+//	 * MenuNode 검색
+//	 * 
+//	 * @param node
+//	 * @throws Exception
+//	 */
+//	public void findMenu(MenuNode node, int menuNo, MenuNode result) throws Exception {
+//		LOGGER.debug("findMenu() start... menuNo={}", menuNo+", result="+result);
+//		
+//		if (node == null) return;
+//		
+//		Enumeration children = node.children();
+//		while (children.hasMoreElements() && result == null) {
+//			MenuNode child = (MenuNode)children.nextElement();
+//			if (menuNo == child.getMenuNo()) {
+//				result = child;
+//				LOGGER.debug("findMenu()... menuNo={}", menuNo+", result="+child.getMenuNm()+", level="+child.getLevel()+", isLeaf="+child.isLeaf());
+//			}
+//			
+//			if (!child.isLeaf()) this.findMenu(child, menuNo, result);
+//		}
+//	}
+
+	
 	/**
 	 * MainMenu Head MenuURL 조회
 	 * @param  iMenuNo  int

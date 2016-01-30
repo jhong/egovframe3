@@ -78,6 +78,8 @@ function fnDelete(){
 <body>
 <noscript class="noScriptTitle">자바스크립트를 지원하지 않는 브라우저에서는 일부 기능을 사용하실 수 없습니다.</noscript>
 <DIV id="content" style="display">
+<div id="leftmenu_div"><c:import url="/sym/mms/EgovMainMenuLeft.do" /></div>
+
 <form name="listForm" action="<c:url value='/sym/ccm/ccc/EgovCcmCmmnClCodeList.do'/>" method="post">
 <table width="700" cellpadding="8" class="table-search" border="0">
  <tr>

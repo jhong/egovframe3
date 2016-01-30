@@ -95,9 +95,18 @@
     </c:forEach>
 </ul>
 </div>
+
+[head] menuTree : ${menuTree}
     <form name="menuListForm" action ="" method="post">
+<c:if test="${not empty siteVO}">
+        <input type="hidden" id="menuNo" name="menuNo" value="${siteVO.menuNo}" />
+</c:if>    
+<c:if test="${empty siteVO}">
         <input type="hidden" id="menuNo" name="menuNo" value="<%=session.getAttribute("menuNo")%>" />
+</c:if>    
+
         <input type="hidden" id="link" name="link" value="" />
+        <input type="hidden" id="designType" name="designType" value="admin-sys" />
         <div style="width:0px; height:0px;">
         <c:forEach var="result" items="${list_menulist}" varStatus="status" >
             <input type="hidden" name="tmp_menuNm" value="${result.menuNo}|${result.upperMenuId}|${result.menuNm}|${result.relateImagePath}|${result.relateImageNm}|${result.chkURL}|" />

@@ -6,7 +6,19 @@
 	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
     <typeAlias  alias="menuManageVO" type="egovframework.com.sym.mnu.mpm.service.MenuManageVO"/>
 	<typeAlias  alias="comDefaultVO" type="egovframework.com.cmm.ComDefaultVO"/>
-	
+
+	<resultMap id="menuNode" class="net.ecplaza.cmm.MenuNode">
+		<result property="menuNo" column="menuNo" />
+		<result property="menuOrdr" column="menuOrdr" />
+		<result property="menuNm" column="menuNm" />
+		<result property="upperMenuNo" column="upperMenuNo" />
+		<!-- <result property="menuDc" column="menuDc" /> -->
+		<result property="relateImagePath" column="relateImagePath" />
+		<result property="relateImageNm" column="relateImageNm" />
+		<result property="progrmFileNm" column="progrmFileNm" />
+		<result property="authorCode" column="authorCode" />
+	</resultMap>
+		
 	<select id="menuManageDAO.selectMainMenuHead" parameterClass="MenuManageVO" resultClass="egovMap">
 		<![CDATA[ 
             SELECT
@@ -82,6 +94,24 @@
             WHERE  A.MENU_NO  = B.MENU_NO 
             AND    A.AUTHOR_CODE =  #authorCode#
             ORDER BY B.MENU_ORDR
+        ]]> 
+    </select>
+
+    <select id="menuManageDAO.selectMainMenuAllByAuthor" parameterClass="MenuManageVO" resultMap="menuNode">
+        <![CDATA[ 
+            SELECT
+                   B.MENU_NO AS "menuNo"
+                 , B.MENU_ORDR AS "menuOrdr"
+                 , B.MENU_NM AS "menuNm"
+                 , B.UPPER_MENU_NO AS "upperMenuNo"
+                 , B.RELATE_IMAGE_PATH AS "relateImagePath"
+                 , B.RELATE_IMAGE_NM AS "relateImageNm"
+                 , (SELECT C.URL FROM COMTNPROGRMLIST C WHERE B.PROGRM_FILE_NM = C.PROGRM_FILE_NM) AS "progrmFileNm"
+                 , A.AUTHOR_CODE AS "authorCode"  
+            FROM   COMTNMENUCREATDTLS A, COMTNMENUINFO B
+            WHERE  A.MENU_NO  = B.MENU_NO 
+            AND    A.AUTHOR_CODE =  #authorCode#
+            ORDER BY B.UPPER_MENU_NO, B.MENU_ORDR, B.MENU_NO
         ]]> 
     </select>
 

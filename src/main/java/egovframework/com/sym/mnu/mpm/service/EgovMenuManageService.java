@@ -3,6 +3,7 @@ package egovframework.com.sym.mnu.mpm.service;
 import java.io.InputStream;
 import java.util.List;
 
+import net.ecplaza.cmm.MenuNode;
 import egovframework.com.cmm.ComDefaultVO;
 
 /**
@@ -129,6 +130,22 @@ public interface EgovMenuManageService {
 	 * @exception Exception
 	 */
 	List<?> selectMainMenuLeftByAuthor(MenuManageVO vo) throws Exception;
+
+	/**
+	 * MainMenu Head All 조회 - Anonymous
+	 * @param vo MenuManageVO
+	 * @return List
+	 * @exception Exception
+	 */
+	List<?> selectMainMenuAllByAuthor(MenuManageVO vo) throws Exception;
+
+	/**
+	 * MenuNode 구성
+	 * @param menuList
+	 * @return
+	 * @throws Exception
+	 */
+	MenuNode makeMenuNode(List menuList) throws Exception;
 
 	/**
 	 * MainMenu Head MenuURL 조회

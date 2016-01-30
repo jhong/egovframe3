@@ -1,5 +1,7 @@
 package egovframework.com.sym.mnu.mpm.service;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 /** 
  * 메뉴목록관리 처리를 위한 VO 클래스르를 정의한다
  * @author 개발환경 개발팀 이용
@@ -350,4 +352,13 @@ public class MenuManageVO{
 	public void setTempInt(int tempInt) {
 		this.tempInt = tempInt;
 	}
+	
+	/**
+	 * toString
+	 * @return String
+	 */
+    public String toString() {
+    	return ToStringBuilder.reflectionToString(this);
+    }
+
 }
