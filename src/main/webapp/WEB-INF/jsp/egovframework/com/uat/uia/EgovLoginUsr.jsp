@@ -66,9 +66,10 @@ function actionLogin() {
     } else if (document.loginForm.password.value =="") {
         alert("비밀번호를 입력하세요");
     } else {
-        document.loginForm.action="<c:url value='/uat/uia/actionLogin.do'/>";
-        //document.loginForm.j_username.value = document.loginForm.userSe.value + document.loginForm.username.value;
-        //document.loginForm.action="<c:url value='/j_spring_security_check'/>";
+        //document.loginForm.action="<c:url value='/uat/uia/actionLogin.do'/>";
+        document.loginForm.j_username.value = document.loginForm.userSe.value + document.loginForm.id.value;
+        document.loginForm.j_password.value = document.loginForm.password.value;
+        document.loginForm.action="<c:url value='/j_spring_security_check'/>";
         document.loginForm.submit();
     }
 }
@@ -268,6 +269,7 @@ function fnInit() {
             </table>
             <input name="userSe" type="hidden" value="GNR"/>
             <input name="j_username" type="hidden"/>
+            <input name="j_password" type="hidden"/>
         </form>
         <!--일반로그인 테이블 끝-->
       </td>

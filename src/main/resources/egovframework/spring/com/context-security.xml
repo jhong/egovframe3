@@ -28,7 +28,7 @@
 		accessDeniedUrl="/sec/ram/accessDenied.do"
 
 		dataSource="egov.dataSource"
-		jdbcUsersByUsernameQuery="SELECT USER_ID, ESNTL_ID AS PASSWORD, 1 ENABLED, USER_NM, USER_ZIP,
+		jdbcUsersByUsernameQuery="SELECT USER_ID, USER_ID AS PASSWORD, 1 ENABLED, USER_NM, USER_ZIP,
                                                               USER_ADRES, USER_EMAIL, USER_SE, ORGNZT_ID, ESNTL_ID,
                                                               (select a.ORGNZT_NM from COMTNORGNZTINFO a where a.ORGNZT_ID = m.ORGNZT_ID) ORGNZT_NM
                                                        FROM COMVNUSERMASTER m WHERE CONCAT(USER_SE, USER_ID) = ?"
@@ -75,4 +75,20 @@
 
 	<egov-security:initializer id="initializer" supportMethod="true" supportPointcut="false" />
 
+    <!--  
+    <authentication-provider user-service-ref="jdbcUserService">
+		<password-encoder ref="myPasswordEncoder" />
+	</authentication-provider>
+
+	<b:bean id="myPasswordEncoder" class="net.ecplaza.security.common.MyPasswordEncoder"/>
+    <b:bean id="jdbcUserService"
+            class="net.ecplaza.security.userdetails.jdbc.MyJdbcUserDetailsManager" >
+            -->
+            <!--
+            class="egovframework.rte.fdl.security.userdetails.jdbc.EgovJdbcUserDetailsManager" >
+            -->
+
+<!-- 
+<security:password-encoder hash="sha-256"></security:password-encoder>
+-->            
 </beans>
